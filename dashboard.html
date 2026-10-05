@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>RecallAI | Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav>
+
+    <div class="brand">
+        🧠 RecallAI
+    </div>
+
+    <div>
+        Hi, {{ name }}
+
+        <a href="/logout" class="logout">
+            Logout
+        </a>
+    </div>
+
+</nav>
+
+<main>
+
+    <section class="hero">
+
+        <span>AI MEMORY ASSISTANT</span>
+
+        <h1>
+            Predict what you're
+            <strong>about to forget.</strong>
+        </h1>
+
+        <p>
+            RecallAI analyzes your learning patterns
+            and helps you decide what to revise next.
+        </p>
+
+    </section>
+
+
+    <section class="stats">
+
+        <div class="stat-card">
+            <h2 id="total">0</h2>
+            <p>Total Topics</p>
+        </div>
+
+        <div class="stat-card">
+            <h2 id="highRisk">0</h2>
+            <p>High Risk</p>
+        </div>
+
+        <div class="stat-card">
+            <h2 id="average">0%</h2>
+            <p>Average Risk</p>
+        </div>
+
+    </section>
+
+
+    <section class="grid">
+
+        <!-- ADD TOPIC -->
+
+        <div class="panel">
+
+            <h2>Add Learning Topic</h2>
+
+            <p>
+                Enter your learning information and
+                RecallAI will estimate your forgetting risk.
+            </p>
+
+            <form id="topicForm">
+
+                <label>Topic</label>
+
+                <input
+                    id="topic"
+                    type="text"
+                    placeholder="DBMS Normalization"
+                    required
+                >
+
+
+                <label>Subject</label>
+
+                <input
+                    id="subject"
+                    type="text"
+                    placeholder="DBMS"
+                    required
+                >
+
+
+                <label>Difficulty</label>
+
+                <select id="difficulty">
+
+                    <option value="1">
+                        Very Easy
+                    </option>
+
+                    <option value="2">
+                        Easy
+                    </option>
+
+                    <option value="3" selected>
+                        Medium
+                    </option>
+
+                    <option value="4">
+                        Difficult
+                    </option>
+
+                    <option value="5">
+                        Very Difficult
+                    </option>
+
+                </select>
+
+
+                <label>Quiz Score (%)</label>
+
+                <input
+                    id="quiz_score"
+                    type="number"
+                    min="0"
+                    max="100"
+                    placeholder="75"
+                    required
+                >
+
+
+                <label>Days Since Study</label>
+
+                <input
+                    id="days_since_study"
+                    type="number"
+                    min="0"
+                    placeholder="5"
+                    required
+                >
+
+
+                <label>Number of Revisions</label>
+
+                <input
+                    id="revisions"
+                    type="number"
+                    min="0"
+                    placeholder="2"
+                    required
+                >
+
+
+                <button type="submit">
+                    🔮 Predict Forgetting Risk
+                </button>
+
+            </form>
+
+            <div id="prediction"></div>
+
+        </div>
+
+
+        <!-- TOPICS -->
+
+        <div class="panel">
+
+            <h2>Your Learning Topics</h2>
+
+            <p>
+                Your highest-risk topics appear first.
+            </p>
+
+            <div id="topics">
+                Loading topics...
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="{{ url_for('static', filename='dashboard.js') }}">
+</script>
+
+</body>
+
+</html>
